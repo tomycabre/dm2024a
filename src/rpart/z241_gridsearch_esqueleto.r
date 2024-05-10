@@ -113,9 +113,9 @@ tb_grid_search <- data.table( max_depth = integer(),
 
 # itero por los loops anidados para cada hiperparametro
 
-for (vmax_depth in c(6, 8, 4)) {
-  for (vmin_split in c(500, 525, 550, 575, 600, 625, 650, 675, 700)) {
-    for (vmin_bucket in unique(as.integer(c(vmin_split/2, vmin_split/3, vmin_split/4)))) {
+for (vmax_depth in c(5, 6, 7)) {
+  for (vmin_split in c(50, 100, 150, 200, 250, 300, 350, 400, 450, 500, 550, 600, 650, 700, 750, 800, 850, 900, 950, 1000)) {
+    for (vmin_bucket in unique(as.integer(c(vmin_split/2, vmin_split/1 ))))  {
     # notar como se agrega
 
     # vminsplit  minima cantidad de registros en un nodo para hacer el split
