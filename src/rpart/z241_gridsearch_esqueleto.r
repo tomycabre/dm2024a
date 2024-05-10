@@ -11,7 +11,7 @@ require("parallel")
 
 PARAM <- list()
 # reemplazar por las propias semillas
-PARAM$semillas <- c(102191, 200177, 410551, 552581, 892237)
+PARAM$semillas <- c(100003, 100043, 100057, 100109, 500009)
 
 #------------------------------------------------------------------------------
 # particionar agrega una columna llamada fold a un dataset
@@ -78,7 +78,7 @@ ArbolesMontecarlo <- function(semillas, param_basicos) {
     semillas, # paso el vector de semillas
     MoreArgs = list(param_basicos), # aqui paso el segundo parametro
     SIMPLIFY = FALSE,
-    mc.cores = 5 # en Windows este valor debe ser 1
+    mc.cores = 1 # en Windows este valor debe ser 1
   )
 
   ganancia_promedio <- mean(unlist(ganancias))
@@ -89,11 +89,11 @@ ArbolesMontecarlo <- function(semillas, param_basicos) {
 #------------------------------------------------------------------------------
 
 # Aqui se debe poner la carpeta de la computadora local
-setwd("~/buckets/b1/") # Establezco el Working Directory
+setwd("C:/Users/54911/Desktop/Coding/zITBAdatamining") # Establezco el Working Directory
 # cargo los datos
 
 # cargo los datos
-dataset <- fread("~/datasets/dataset_pequeno.csv")
+dataset <- fread("./datasets/dataset_pequeno.csv")
 
 # trabajo solo con los datos con clase, es decir 202107
 dataset <- dataset[clase_ternaria != ""]
@@ -132,13 +132,13 @@ for (vmax_depth in c(4, 6, 8, 10, 12, 14)) {
     tb_grid_search <- rbindlist( 
       list( tb_grid_search, 
             list( vmax_depth, vmin_split, ganancia_promedio) ) )
-
+    }
   }
 
   # escribo la tabla a disco en cada vuelta del loop mas externo
   Sys.sleep(2)  # espero un par de segundos
 
   fwrite( tb_grid_search,
-          file = archivo_salida,
+          file = "./exp/KA2001/K101_004.csv",
           sep = "\t" )
 }

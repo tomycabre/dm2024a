@@ -5,7 +5,7 @@ require("data.table")
 require("rpart")
 
 PARAM <- list()
-PARAM$semilla <- 102191
+PARAM$semilla <- 500009
 
 #------------------------------------------------------------------------------
 # particionar agrega una columna llamada fold a un dataset
@@ -33,7 +33,7 @@ particionar <- function(
 
 # Aqui se debe poner la carpeta de la computadora local
 # Establezco el Working Directory
-setwd("X:\\gdrive\\itba2024a\\")
+setwd("C:/Users/54911/Desktop/Coding/zITBAdatamining")
 
 # cargo los datos
 dataset <- fread("./datasets/dataset_pequeno.csv")
@@ -63,6 +63,10 @@ modelo <- rpart("clase_ternaria ~ .",
   control = param_basicos # aqui van los parametros
 )
 
+prp(modelo,
+    extra = 101, digits = -5,
+    branch = 1, type = 4, varlen = 0, faclen = 0
+)
 
 # aplico el modelo a los datos de testing
 prediccion <- predict(modelo, # el modelo que genere recien
@@ -97,3 +101,4 @@ cat("Estimulos: ", estimulos, "\n")
 cat("Aciertos (BAJA+2): ", aciertos, "\n")
 
 cat("Ganancia en testing (normalizada): ", ganancia_test_normalizada, "\n")
+
