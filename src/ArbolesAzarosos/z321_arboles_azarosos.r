@@ -11,14 +11,15 @@ require("rpart")
 
 # parmatros experimento
 PARAM <- list()
-PARAM$experimento <- 3510
+PARAM$experimento <- 3216
+PARAM$semilla <- 100003
 
 # parameetros rpart
 PARAM$rpart_param <- list(
   "cp" = -1,
-  "minsplit" = 250,
-  "minbucket" = 100,
-  "maxdepth" = 14
+  "minsplit" = 1000,
+  "minbucket" = 50,
+  "maxdepth" = 10
 )
 
 # parametros  arbol
@@ -33,14 +34,14 @@ PARAM$num_trees_max <- 500
 #------------------------------------------------------------------------------
 # Aqui comienza el programa
 
-setwd("~/buckets/b1/") # Establezco el Working Directory
+setwd("C:/Users/54911/Desktop/Coding/zITBAdatamining") # Establezco el Working Directory
 
 #cargo MI semilla, que esta en MI bucket
-tabla_semillas <- fread( "./datasets//mis_semillas.txt" )
-ksemilla_azar <- tabla_semillas[ 1, semilla ]  # 1 es mi primer semilla
+tabla_semillas <- (PARAM$semilla)
+ksemilla_azar <- (PARAM$semilla)  # 1 es mi primer semilla
 
 # cargo los datos
-dataset <- fread("~/datasets/dataset_pequeno.csv")
+dataset <- fread("./datasets/dataset_pequeno.csv")
 
 
 # creo la carpeta donde va el experimento
