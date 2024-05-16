@@ -11,21 +11,21 @@ require("lightgbm")
 # defino los parametros de la corrida, en una lista, la variable global  PARAM
 #  muy pronto esto se leera desde un archivo formato .yaml
 PARAM <- list()
-PARAM$experimento <- "KA4541"
+PARAM$experimento <- "KA4542"
 
 PARAM$input$dataset <- "~/datasets/dataset_pequeno.csv"
 PARAM$input$training <- c(202107) # meses donde se entrena el modelo
 PARAM$input$future <- c(202109) # meses donde se aplica el modelo
 
 
-PARAM$finalmodel$num_iterations <- 1009
-PARAM$finalmodel$learning_rate <- 0.0109982243741381
-PARAM$finalmodel$feature_fraction <- 0.582688086538717
-PARAM$finalmodel$min_data_in_leaf <- 1529
-PARAM$finalmodel$num_leaves <- 151
-PARAM$finalmodel$min_gain_to_split <- 0.090360430094201
-PARAM$finalmodel$lambda_l1 <- 0.883886008773475
-PARAM$finalmodel$lambda_l2 <- 0.136639673900884
+PARAM$finalmodel$num_iterations <- 181
+PARAM$finalmodel$learning_rate <- 0.054750767971165
+PARAM$finalmodel$feature_fraction <- 0.479103753276353
+PARAM$finalmodel$min_data_in_leaf <- 1433
+PARAM$finalmodel$num_leaves <- 276
+PARAM$finalmodel$min_gain_to_split <- 0.528351462812425
+PARAM$finalmodel$lambda_l1 <- 0.671498077044981
+PARAM$finalmodel$lambda_l2 <- 0.71729083645581
 PARAM$finalmodel$max_bin <- 31
 
 #------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ setwd("~/buckets/b1")
 
 # cargo MI semilla, que esta en MI bucket
 tabla_semillas <- fread( "./datasets//mis_semillas.txt" )
-ksemilla_azar <- tabla_semillas[ 1, semilla ]  # 1 es mi primer semilla
+ksemilla_azar <- tabla_semillas[ 2, semilla ]  # 1 es mi primer semilla
 
 
 # cargo el dataset donde voy a entrenar

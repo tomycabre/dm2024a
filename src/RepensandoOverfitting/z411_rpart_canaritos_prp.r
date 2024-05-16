@@ -30,8 +30,8 @@ for( i in 1:154 ) dataset[ , paste0("canarito", i ) :=  runif( nrow(dataset)) ]
                model = TRUE,
                xval = 0,
                cp = -0.5,
-               minsplit =  600,
-               minbucket = 150,
+               minsplit =  700,
+               minbucket = 700,
                maxdepth = 6 )
 
 
