@@ -4,7 +4,7 @@
 require( "data.table" )
 
 # reemplazar aqui por SUS semillas 
-mis_semillas <- c(102191, 200177, 410551, 552581, 892237)
+mis_semillas <- c(100003, 100043, 100057, 100109, 100151)
 
 tabla_semillas <- as.data.table(list( semilla = mis_semillas ))
 
