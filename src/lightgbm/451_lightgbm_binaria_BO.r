@@ -33,7 +33,7 @@ options(error = function() {
 #  muy pronto esto se leera desde un archivo formato .yaml
 PARAM <- list()
 
-PARAM$experimento <- "HT4510"
+PARAM$experimento <- "HT4511"
 
 PARAM$input$dataset <- "~/datasets/dataset_pequeno.csv"
 PARAM$input$training <- c(202107) # los meses en los que vamos a entrenar
@@ -217,8 +217,8 @@ setwd("~/buckets/b1/") # Establezco el Working Directory
 
 # cargo MI semilla, que esta en MI bucket
 tabla_semillas <- fread( "./datasets//mis_semillas.txt" )
-ksemilla_azar1 <- tabla_semillas[ 1, semilla ]  # 1 es mi primera semilla
-ksemilla_azar2 <- tabla_semillas[ 2, semilla ]  # 2 es mi segunda semilla
+ksemilla_azar1 <- tabla_semillas[ 2, semilla ]  # 1 es mi primera semilla
+ksemilla_azar2 <- tabla_semillas[ 3, semilla ]  # 2 es mi segunda semilla
 
 # cargo el dataset donde voy a entrenar el modelo
 dataset <- fread(PARAM$input$dataset)
