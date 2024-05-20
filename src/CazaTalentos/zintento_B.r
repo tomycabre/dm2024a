@@ -34,7 +34,7 @@ gimnasio_tirar  <- function(  pids,  pcantidad )
 {
   GLOBAL_tiros_total  <<-  GLOBAL_tiros_total + length( pids )*pcantidad
   res  <- mapply(  ftirar, GLOBAL_jugadores[pids], pcantidad )
-
+  
   return( res )
 }
 
@@ -55,82 +55,82 @@ Estrategia_B  <- function()
   #En cada ronda, los jugadores que participan, tiran 70 tiros
   #De una ronda a la otra, solo pasan los que tuvieron igual o mayor aciertos a la mediana de aciertos de la ronda anterior
   #Se elige el mejor jugador de la sexta ronda
-
+  
   gimnasio_init()
-
+  
   #Esta el la planilla del cazatalentos
   #el id es el numero que tiene en la espalda cada jugador
   planilla_cazatalentos  <- data.table( "id"= 1:100 )
-
+  
   #Ronda 1  ------------------------------------------------------
   #tiran los 100 jugadores es decir 1:100   70  tiros libres cada uno
   ids_juegan1  <- 1:100   #los jugadores que participan en la ronda,
-
+  
   planilla_cazatalentos[ ids_juegan1,  tiros1 := 70 ]  #registro en la planilla que tiran 70 tiros
   resultado1  <- gimnasio_tirar( ids_juegan1, 70)
   planilla_cazatalentos[ ids_juegan1,  aciertos1 := resultado1 ]  #registro en la planilla
-
-
+  
+  
   #Ronda 2 -------------------------------------------------------
   #A la mitad mejor la hago tirar 70 tiros cada uno
   #La mediana siempre parte a un conjunto en dos partes de igual cantidad
   mediana  <- planilla_cazatalentos[ ids_juegan1, median(aciertos1) ]
   ids_juegan2  <- planilla_cazatalentos[ ids_juegan1 ][ aciertos1 >= mediana, id ]
-
+  
   planilla_cazatalentos[ ids_juegan2,  tiros2 := 70 ]  #registro en la planilla que tiran 70 tiros
   resultado2  <- gimnasio_tirar( ids_juegan2, 70)
   planilla_cazatalentos[ ids_juegan2,  aciertos2 := resultado2 ]  #registro en la planilla
-
-
+  
+  
   #Ronda 3 -------------------------------------------------------
   #A la mitad mejor la hago tirar 70 tiros cada uno
   #La mediana siempre parte a un conjunto en dos partes de igual cantidad
   mediana  <- planilla_cazatalentos[ ids_juegan2, median(aciertos2) ]
   ids_juegan3  <- planilla_cazatalentos[ ids_juegan2 ][ aciertos2 >= mediana, id ]
-
+  
   planilla_cazatalentos[ ids_juegan3,  tiros3 := 70 ]  #registro en la planilla que tiran 70 tiros
   resultado3  <- gimnasio_tirar( ids_juegan3, 70)
   planilla_cazatalentos[ ids_juegan3,  aciertos3 := resultado3 ]  #registro en la planilla
-
-
+  
+  
   #Ronda 4 -------------------------------------------------------
   #A la mitad mejor la hago tirar 70 tiros cada uno
   #La mediana siempre parte a un conjunto en dos partes de igual cantidad
   mediana  <- planilla_cazatalentos[ ids_juegan3, median(aciertos3) ]
   ids_juegan4  <- planilla_cazatalentos[ ids_juegan3 ][ aciertos3 >= mediana, id ]
-
+  
   planilla_cazatalentos[ ids_juegan4,  tiros4 := 70 ]  #registro en la planilla que tiran 70 tiros
   resultado4  <- gimnasio_tirar( ids_juegan4, 70)
   planilla_cazatalentos[ ids_juegan4,  aciertos4 := resultado4 ]  #registro en la planilla
-
-
+  
+  
   #Ronda 5 -------------------------------------------------------
   #A la mitad mejor la hago tirar 70 tiros cada uno
   #La mediana siempre parte a un conjunto en dos partes de igual cantidad
   mediana  <- planilla_cazatalentos[ ids_juegan4, median(aciertos4) ]
   ids_juegan5  <- planilla_cazatalentos[ ids_juegan4 ][ aciertos4 >= mediana, id ]
-
+  
   planilla_cazatalentos[ ids_juegan5,  tiros5 := 70 ]  #registro en la planilla que tiran 70 tiros
   resultado5  <- gimnasio_tirar( ids_juegan5, 70)
   planilla_cazatalentos[ ids_juegan5,  aciertos5 := resultado5 ]  #registro en la planilla
-
-
+  
+  
   #Ronda 6 -------------------------------------------------------
   #A la mitad mejor la hago tirar 200 tiros cada uno
   #La mediana siempre parte a un conjunto en dos partes de igual cantidad
   mediana  <- planilla_cazatalentos[ ids_juegan5, median(aciertos5) ]
   ids_juegan6  <- planilla_cazatalentos[ ids_juegan5 ][ aciertos5 >= mediana, id ]
-
+  
   planilla_cazatalentos[ ids_juegan6,  tiros6 := 200 ]  #registro en la planilla que tiran 200 tiros
   resultado6  <- gimnasio_tirar( ids_juegan6, 200)
   planilla_cazatalentos[ ids_juegan6,  aciertos6 := resultado6 ]  #registro en la planilla
-
-
+  
+  
   #Epilogo
   #El cazatalentos toma una decision, elige al que mas aciertos tuvo en la ronda2
   pos_mejor <-  planilla_cazatalentos[ , which.max(aciertos6) ]
   id_mejor  <-  planilla_cazatalentos[ pos_mejor, id ]
-
+  
   #Finalmente, la hora de la verdadero_mejor
   #Termino el juego
   veredicto  <- gimnasio_veredicto( id_mejor )
@@ -148,7 +148,7 @@ tabla_veredictos  <- data.table(  tiros_total=integer(),  acierto=integer() )
 for( experimento  in  1:10000 )
 {
   if( experimento %% 1000 == 0 )  cat( experimento, " ")  #desprolijo, pero es para saber por donde voy
-
+  
   veredicto  <- Estrategia_B()
   
   tabla_veredictos  <- rbind( tabla_veredictos, veredicto )
@@ -163,5 +163,6 @@ tiros_total
 tasa_eleccion_correcta
 
 #Es una sábana corta ...
+
 
 
