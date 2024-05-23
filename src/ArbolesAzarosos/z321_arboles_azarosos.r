@@ -17,14 +17,14 @@ PARAM$semilla <- 100003
 # parameetros rpart
 PARAM$rpart_param <- list(
   "cp" = -1,
-  "minsplit" = 1000,
-  "minbucket" = 50,
-  "maxdepth" = 10
+  "minsplit" = 50,
+  "minbucket" = 5,
+  "maxdepth" = 14
 )
 
 # parametros  arbol
 # entreno cada arbol con solo 50% de las variables variables
-PARAM$feature_fraction <- 0.5
+PARAM$feature_fraction <- 0.3
 # voy a generar 500 arboles,
 #  a mas arboles mas tiempo de proceso y MEJOR MODELO,
 #  pero ganancias marginales
